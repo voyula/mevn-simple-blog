@@ -17,7 +17,7 @@ $ npm install
 
 ## 🐣 Running
 
-# Vue.js
+### Vue.js
 ```bash
 # serve with hot reload at localhost:8080
 npm run dev
@@ -29,7 +29,7 @@ npm run build
 npm run build --report
 ```
 
-# API Server
+### API Server
 ```bash
 $ node server/src/app.js
 ```
