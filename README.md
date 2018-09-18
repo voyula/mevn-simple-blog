@@ -3,7 +3,7 @@
 [![Build Status][ico-travis]][link-travis]
 [![License][ico-license]][link-license]
 
-Simple blog based on Rails.
+Simple blog based on MongoDB, Express.js, Vue.js and Node.js.
 
 ## ⚡ Installation
 
