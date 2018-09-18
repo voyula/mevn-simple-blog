@@ -55,7 +55,7 @@ Licensed under the MIT License. See [License File](LICENSE.md) for more informat
 
 [ico-travis]: https://img.shields.io/travis/voyula/websocket-chat/master.svg?longCache=true&style=flat-square
 
-[ico-license]: https://img.shields.io/packagist/l/voyula/mevn-simple-blog.svg?longCache=true&style=flat-square
+[ico-license]: https://img.shields.io/github/license/voyula/mevn-simple-blog.svg?longCache=true&style=flat-square
 
 
 [link-travis]: https://travis-ci.org/voyula/mevn-simple-blog
