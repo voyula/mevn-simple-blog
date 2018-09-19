@@ -13,6 +13,8 @@ Via GIT
 $ git clone https://github.com/voyula/mevn-simple-blog.git
 $ cd mevn-simple-blog
 $ npm install
+$ cd server
+$ npm install
 ```
 
 ## 🐣 Running
