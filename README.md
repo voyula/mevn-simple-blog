@@ -38,6 +38,10 @@ $ node server/src/app.js
 
 Your app should now be running on [http://localhost:8080/](http://localhost:8080/)
 
+## 🛒 Requires
+
+- MongoDB
+
 ### 📜 Standards
 
 - [Semantic Versioning 2.0.0](https://semver.org/)
