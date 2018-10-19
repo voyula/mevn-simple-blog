@@ -32,6 +32,7 @@ npm run build --report
 ```
 
 ### REST API Server
+
 ```bash
 $ node server/src/app.js
 ```
