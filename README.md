@@ -7,7 +7,7 @@ Simple blog based on MongoDB, Express.js, Vue.js and Node.js.
 
 ## ⚡ Installation
 
-Via GIT
+Via GIT & NPM
 
 ```bash
 $ git clone https://github.com/voyula/mevn-simple-blog.git
