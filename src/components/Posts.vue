@@ -16,7 +16,7 @@
           <td>{{ post.description }}</td>
           <td align="center">
             <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id } }">Edit</router-link> |
-            <a href="#" @click="deletePost(post._id)">Delete</a>
+            <a href="#" @click="removePost(post._id)">Delete</a>
           </td>
         </tr>
       </table>
@@ -29,26 +29,25 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
 export default {
   name: 'posts',
   data () {
     return {
-      posts: []
     }
   },
   mounted () {
-    this.getPosts()
+    this.$store.dispatch('fetchPosts')
+  },
+  computed: {
+    posts () {
+      return this.$store.state.posts;
+    },
   },
   methods: {
-    async getPosts () {
-      const response = await PostsService.fetchPosts()
-      this.posts = response.data.posts
-    },
-    async deletePost (id) {
-      await PostsService.deletePost(id)
-      this.getPosts()
-      this.$router.push({ name: 'Posts' })
+    removePost (id) {
+      this.$store.dispatch('removePost', {
+        id: id
+      })
     }
   }
 }
