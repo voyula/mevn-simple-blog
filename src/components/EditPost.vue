@@ -16,26 +16,18 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
 export default {
   name: 'EditPost',
   data () {
     return {
-      title: '',
-      description: ''
+      title: this.$route.params.title,
+      description: this.$route.params.description
     }
   },
   mounted () {
     this.getPost()
   },
   methods: {
-    async getPost () {
-      const response = await PostsService.getPost({
-        id: this.$route.params.id
-      })
-      this.title = response.data.title
-      this.description = response.data.description
-    },
     updatePost () {
       this.$store.dispatch('editPost', {
         id: this.$route.params.id,
