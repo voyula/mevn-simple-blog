@@ -25,6 +25,9 @@
       There are no posts.. Lets add one now <br /><br />
       <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
     </div>
+	<div>
+	  You can storage your notes.
+	</div>
   </div>
 </template>
 
