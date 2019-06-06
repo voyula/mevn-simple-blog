@@ -16,7 +16,7 @@
           <td>{{ post.description }}</td>
           <td align="center">
             <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id, title: post.title, description: post.description  } }">Edit</router-link> |
-            <a href="#" @click="removePost(post._id)">Delete</a>
+            <a href="#" @click="removePost({id: post._id})">Delete</a>
           </td>
         </tr>
       </table>
@@ -25,13 +25,11 @@
       There are no posts.. Lets add one now <br /><br />
       <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
     </div>
-	<div>
-	  You can storage your notes.
-	</div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'posts',
   data () {
@@ -39,19 +37,18 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('fetchPosts')
+    this.fetchPosts()
   },
   computed: {
-    posts () {
-      return this.$store.state.posts;
-    },
+    ...mapState({
+      posts: 'posts'
+    })
   },
   methods: {
-    removePost (id) {
-      this.$store.dispatch('removePost', {
-        id: id
-      })
-    }
+    ...mapActions({
+      fetchPosts: 'fetchPosts',
+      removePost: 'removePost'
+    })
   }
 }
 </script>

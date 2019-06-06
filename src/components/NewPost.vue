@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'NewPost',
   data () {
@@ -25,8 +26,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      newPost: 'addPost'
+    }),
     addPost () {
-      this.$store.dispatch('addPost', {
+      this.newPost({
         title: this.title,
         description: this.description
       }).then(() => {

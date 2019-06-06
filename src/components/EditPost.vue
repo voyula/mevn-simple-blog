@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'EditPost',
   data () {
@@ -24,12 +25,12 @@ export default {
       description: this.$route.params.description
     }
   },
-  mounted () {
-    this.getPost()
-  },
   methods: {
+    ...mapActions({
+      editPost: 'editPost'
+    }),
     updatePost () {
-      this.$store.dispatch('editPost', {
+      this.editPost({
         id: this.$route.params.id,
         title: this.title,
         description: this.description
