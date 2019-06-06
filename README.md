@@ -1,4 +1,4 @@
-# 🦄mevn-simple-blog
+# 🦄 mevn-simple-blog
 
 [![Build Status][ico-travis]][link-travis]
 [![License][ico-license]][link-license]
