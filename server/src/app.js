@@ -5,6 +5,13 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const Post = require('../models/post')
 
+var redis = require("redis"),
+    redisClient = redis.createClient();
+
+redisClient.on("error", function (err) {
+    console.log("Error " + err);
+});
+
 mongoose.connect('mongodb://localhost:27017/posts', { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
@@ -19,15 +26,25 @@ app.use(cors())
 
 // Fetch all posts
 app.get('/posts', (req, res) => {
-  Post.find({}, 'title description', (error, posts) => {
-    if (error) {
-      console.error(error)
-    }
+  redisClient.get("posts", function(err, redisPosts) {
+    if (redisPosts === null) {
+      Post.find({}, 'title description', (error, posts) => {
+        if (error) {
+          console.error(error)
+        }
 
-    res.send({
-      posts: posts
-    })
-  }).sort({_id: -1})
+        redisClient.set("posts", JSON.stringify(posts), 'EX', 60 * 30);
+
+        res.send({
+          posts: posts
+        })
+      }).sort({_id: -1})
+    } else {
+      res.send({
+        posts: JSON.parse(redisPosts)
+      })
+    }
+  });
 })
 
 // Add new post
@@ -44,6 +61,7 @@ app.post('/posts', (req, res) => {
       console.log(error)
     }
 
+    redisClient.set("posts", null);
     res.send({
       success: true,
       message: 'Post saved successfully!'
@@ -75,7 +93,7 @@ app.put('/posts/:id', (req, res) => {
       if (error) {
         console.log(error)
       }
-
+      redisClient.set("posts", null);
       res.send({
         success: true
       })
@@ -91,6 +109,7 @@ app.delete('/posts/:id', (req, res) => {
     if (err) {
       res.send(err)
     }
+    redisClient.set("posts", null);
     res.send({
       success: true
     })
